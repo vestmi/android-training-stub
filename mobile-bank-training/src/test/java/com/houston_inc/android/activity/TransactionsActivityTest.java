@@ -25,7 +25,7 @@ public class TransactionsActivityTest extends AbstractTestCase {
     @Before
     public void setUp() throws Exception {
         activity = new TransactionsActivity_();
-        activity.accountDetailsFragment = new AccountDetailsFragment();
+        //activity.accountDetailsFragment = new AccountDetailsFragment();
     }
 
     @Test

@@ -18,14 +18,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.AccountsActivity_">
-        </activity>
-
-        <activity android:name=".activity.PaymentActivity_">
-        </activity>
-
-        <activity android:name=".activity.TransactionsActivity_">
-        </activity>
 
     </application>
 

@@ -25,44 +25,12 @@ import java.util.List;
 @EFragment(R.layout.account_details)
 public class AccountDetailsFragment extends Fragment {
 
-    @ViewById(R.id.accountDetailsAmount)
-    TextView accountDetailsAmount;
-
-    @ViewById(R.id.accountDetailsIban)
-    TextView accountDetailsIban;
-
-    @ViewById(R.id.accountDetailsName)
-    TextView accountDetailsName;
-
-    @Inject
-    AccountService accountService;
-
-    @Inject
-    TransactionService transactionService;
-
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
         constructDependencyGraph();
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-
-    public void updateDetails(Integer index) {
-        Account account = accountService.getAccount(index);
-        List<Transaction> transactions = transactionService.getTransactions(account, SecurityKey.valueOf("123456"));
-
-        accountDetailsAmount.setText(""+account.getBalance());
-        accountDetailsIban.setText(""+account.getIban().toString());
-        accountDetailsName.setText(""+account.getName());
-
-        // TODO: show transactions in gridview
-
-    }
 
     /**
      * Constructs dependency injection graph for Dagger.

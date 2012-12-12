@@ -19,7 +19,7 @@ public class DummyLoginProvider extends AbstractNetworkRequestEmulator implement
     public void login(String username, String password, SecurityKey key)
             throws InvalidCredentialsException, InvalidSecurityKeyException {
 
-        emulateNetworkRequest(3000);
+        emulateNetworkRequest(6000);
 
         boolean validUsername = username!=null && username.equals(VALID_USERNAME);
         boolean validPassword = password!=null && password.equals(VALID_PASSWORD);

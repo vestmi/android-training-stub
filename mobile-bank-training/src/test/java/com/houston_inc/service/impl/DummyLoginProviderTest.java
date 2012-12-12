@@ -10,33 +10,32 @@ import static org.junit.Assert.assertEquals;
 
 public class DummyLoginProviderTest {
 
+    private DummyLoginProvider loginProvider;
+
     @Before
     public void setUp() throws Exception {
-
+        loginProvider = new DummyLoginProvider();
+        loginProvider.doNotSleep();
     }
 
     @Test
     public void testLoginSuccess() throws Exception {
-        DummyLoginProvider loginProvider = new DummyLoginProvider();
         loginProvider.login("test", "test", SecurityKey.valueOf("123456"));
         assertEquals("test", loginProvider.getLoggedInUser().getUsername());
     }
 
     @Test(expected = InvalidCredentialsException.class)
     public void testLoginFailsWrongUsername() throws Exception {
-        DummyLoginProvider loginProvider = new DummyLoginProvider();
         loginProvider.login("fail", "test", SecurityKey.valueOf("123456"));
     }
 
     @Test(expected = InvalidCredentialsException.class)
     public void testLoginFailsWrongPassword() throws Exception {
-        DummyLoginProvider loginProvider = new DummyLoginProvider();
         loginProvider.login("test", "fail", SecurityKey.valueOf("123456"));
     }
 
     @Test(expected = InvalidSecurityKeyException.class)
     public void testLoginFailsWrongSecurityKey() throws Exception {
-        DummyLoginProvider loginProvider = new DummyLoginProvider();
         loginProvider.login("test", "test", SecurityKey.valueOf("000000"));
     }
 

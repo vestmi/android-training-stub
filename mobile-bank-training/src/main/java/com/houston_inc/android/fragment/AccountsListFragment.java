@@ -22,42 +22,11 @@ import java.util.List;
 @EFragment
 public class AccountsListFragment extends ListFragment {
 
-    @Inject
-    AccountService accountService;
-
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
         constructDependencyGraph();
     }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        List<Account> accounts = accountService.getAccounts();
-        ArrayAdapter<Account> adapter = new ArrayAdapter<Account>(this.getActivity(),
-                android.R.layout.simple_list_item_1, accounts);
-
-        setListAdapter(adapter);
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-
-        AccountDetailsFragment_ fragment = (AccountDetailsFragment_) getFragmentManager()
-                .findFragmentById(R.id.accountDetailsFragment);
-        if (fragment != null && fragment.isInLayout()) {
-            fragment.updateDetails(position);
-        } else {
-            Intent intent = new Intent(getActivity().getApplicationContext(),
-                    TransactionsActivity_.class);
-            intent.putExtra(TransactionsActivity.INTENT_EXTRA_ACCOUNT_INDEX, position);
-            startActivity(intent);
-        }
-
-    }
-
 
     /**
      * Constructs dependency injection graph for Dagger.
